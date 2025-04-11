@@ -89,5 +89,15 @@ function removeLastCard() {
   showCards(); // Call showCards again to refresh
 }
 
+function searchAttractions() {
+  const query = document.getElementById("search-input").value.toLowerCase();
+  filteredAttractions = attractions.filter((place) =>
+    place.name.toLowerCase().includes(query)
+  );
+  showCards();
+  query.innerHTML = ""; // Clear search input after search button is clicked
+}
+
 window.quoteAlert = quoteAlert;
 window.removeLastCard = removeLastCard;
+window.searchAttractions = searchAttractions;
