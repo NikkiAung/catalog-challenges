@@ -79,11 +79,21 @@ function editCardContent(card, place) {
   console.log("new card:", place.name, "- html: ", card);
 }
 
-function quoteAlert() {
-  console.log("Button Clicked!");
-  alert(
-    "I guess I can kiss heaven goodbye, because it got to be a sin to look this good!"
+function quizzAlert() {
+  const userAnswer = prompt(
+    "Which city is my hometown? 🤔\nHint: It starts with 'M' and is in Mon State."
   );
+
+  if (!userAnswer) {
+    alert("You didn't enter anything! Try again later.");
+    return;
+  }
+
+  if (userAnswer.trim().toLowerCase() === "mawlamyine") {
+    alert("🎉 Correct! Yes, Mawlamyine is my hometown. Thanks for guessing!");
+  } else {
+    alert("❌ Nope! Try again - it's in Mon State and starts with an 'M' 😉");
+  }
 }
 
 function removeLastCard() {
@@ -254,18 +264,21 @@ function updatePlace(button) {
   modal.style.display = "block";
 }
 
-// Add to window object
-window.updatePlace = updatePlace;
-window.deletePlace = deletePlace;
-
+function clearForm() {
+  const form = document.getElementById("addPlaceForm");
+  form.reset();
+}
 // This calls the addCards(), formHandler() function when the page is first loaded
 document.addEventListener("DOMContentLoaded", () => {
   showCards(), formHandler();
 });
 
-window.quoteAlert = quoteAlert;
+window.quizzAlert = quizzAlert;
 window.removeLastCard = removeLastCard;
 window.searchAttractions = searchAttractions;
 window.AddNewPlace = AddNewPlace;
 window.filterByCategory = filterByCategory;
 window.sortByRating = sortByRating;
+window.updatePlace = updatePlace;
+window.deletePlace = deletePlace;
+window.clearForm = clearForm;

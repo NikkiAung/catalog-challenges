@@ -28,6 +28,19 @@ export const attractions = [
     ],
   },
   {
+    name: "Shwedagon",
+    image: "https://i.redd.it/7pmtodcvcsca1.jpg",
+    location: "Yangon",
+    description: "Myanmar's most sacred Buddhist pagoda, coated in gold.",
+    category: "Religious",
+    visitors: 500000,
+    rating: 4.9,
+    comments: [
+      "Even President Obama pulled up to Shwedagon back in the day - iconic move",
+      "Incredible architecture and energy.",
+    ],
+  },
+  {
     name: "Pyin Oo Lwin",
     image:
       "https://res.klook.com/images/fl_lossy.progressive,q_65/c_fill,w_1200,h_630/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/activities/njf8o9srd2ik86ujvbzt/Pyin%20Oo%20Lwin%20Day%20Tour%20from%20Mandalay.jpg",
@@ -52,20 +65,6 @@ export const attractions = [
     visitors: 250000,
     rating: 4.7,
     comments: ["Spiritual and surreal!", "How does the rock not fall?!"],
-  },
-  {
-    name: "Shwedagon",
-    image:
-      "https://www.tripsavvy.com/thmb/-9hghL7Z4UpHJlaVsjDzcu-FQWc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/shwedagon-pagoda-yangon-5a0e73e44e4f7d0036a76931.jpg",
-    location: "Yangon",
-    description: "Myanmar's most sacred Buddhist pagoda, coated in gold.",
-    category: "Religious",
-    visitors: 500000,
-    rating: 4.9,
-    comments: [
-      "Golden beauty! Spiritually powerful.",
-      "Incredible architecture and energy.",
-    ],
   },
   {
     name: "Ngapali Beach",

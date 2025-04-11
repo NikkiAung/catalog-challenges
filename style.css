@@ -48,6 +48,7 @@
   justify-content: center;
   background-color: rgba(126, 208, 231, 0.941);
   padding: 10px;
+  gap: 10px;
 }
 
 .navbar {
@@ -133,10 +134,33 @@ button {
   margin-bottom: 8px;
 }
 
-.title {
-  font-size: 1.8rem;
+.title-container {
+  text-align: center;
+  padding: 40px 20px;
+  background: linear-gradient(rgba(126, 208, 231, 0.3), transparent);
+}
+
+.main-title {
+  font-size: 3.5rem;
   color: #333;
-  margin-bottom: 12px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .main-title {
+    font-size: 2rem;
+  }
+}
+
+.title {
+  font-size: 1.5rem;
+  color: #333;
+  margin: 10px auto;
 }
 
 .description {
@@ -285,4 +309,33 @@ button {
 
 .card-actions .button {
   flex: 1;
+}
+
+.scale-down-center {
+  -webkit-animation: scale-down-center 0.6s
+    cubic-bezier(0.55, 0.085, 0.68, 0.53) reverse backwards;
+  animation: scale-down-center 0.6s cubic-bezier(0.55, 0.085, 0.68, 0.53)
+    reverse backwards;
+}
+
+@-webkit-keyframes scale-down-center {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+  }
+}
+
+@keyframes scale-down-center {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+  }
 }

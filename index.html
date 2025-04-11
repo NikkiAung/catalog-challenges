@@ -53,12 +53,10 @@
           </div>
         </div>
       </nav>
-      <div class="container title">
-        <h2>
-          Let's take a visit to 10 Most Tourist Visited Places In Myanmar, shall
-          we?
-        </h2>
-      </div>
+      <div class="title-container">
+        <h1 class="main-title scale-down-center">
+          Let's take a visit to 10 Most Popular Tourist Places In Myanmar, shall we?
+        </h1>
     </header>
     <!-- container to store all cards -->
     <div id="card-container" class="container"></div>
@@ -92,7 +90,7 @@
     </div>
     <!-- footer -->
     <div class="footer">
-      <button class="button" onclick="quoteAlert();">Get A Quote!</button>
+      <button class="button" onclick="quizzAlert();">Quizz Time!</button>
       <button class="button" onclick="removeLastCard();">Remove A Card!</button>
     </div>
     <div id="addPlaceModal" class="modal">
@@ -129,6 +127,7 @@
             placeholder="Comments (optional, separate by new line)"
           ></textarea>
           <button type="submit" class="button">Submit</button>
+          <button onclick="clearForm()" class="button">Clear</button>
         </form>
       </div>
     </div>
