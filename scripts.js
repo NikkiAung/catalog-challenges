@@ -116,6 +116,7 @@ function formHandler() {
     modal.style.display = "none";
   };
 
+  // This is when the user clicks anywhere outside of the modal, close it :)
   window.onclick = function (event) {
     if (event.target == modal) {
       modal.style.display = "none";
@@ -158,6 +159,29 @@ function filterByCategory(category) {
   showCards();
 }
 
+function sortByRating(option) {
+  // use sort() method to sort the array, with the manipulation of sign - & + for ascending & descending order
+  switch (option) {
+    case "AAV": // Asc Annual Visitors
+      filteredAttractions.sort((a, b) => a.visitors - b.visitors);
+      break;
+    case "DAV": // Dsc Annual Visitors
+      filteredAttractions.sort((a, b) => b.visitors - a.visitors);
+      break;
+    case "ARR": // Asc Rating Review
+      filteredAttractions.sort((a, b) => a.rating - b.rating);
+      break;
+    case "DRR": // Dsc Rating Review
+      filteredAttractions.sort((a, b) => b.rating - a.rating);
+      break;
+    default:
+      // no option selected -> restore original order
+      filteredAttractions = [...attractions];
+      break;
+  }
+  showCards();
+}
+
 // This calls the addCards(), formHandler() function when the page is first loaded
 document.addEventListener("DOMContentLoaded", () => {
   showCards(), formHandler();
@@ -168,3 +192,4 @@ window.removeLastCard = removeLastCard;
 window.searchAttractions = searchAttractions;
 window.AddNewPlace = AddNewPlace;
 window.filterByCategory = filterByCategory;
+window.sortByRating = sortByRating;

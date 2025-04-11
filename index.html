@@ -21,7 +21,6 @@
             <button class="button" onclick="AddNewPlace()">
               Let's Add New Place
             </button>
-            <!-- Replace the existing filter button with this dropdown -->
             <div class="dropdown" style="display: inline">
               <select
                 id="categoryFilter"
@@ -37,9 +36,19 @@
                 <option value="Adventure">Adventure</option>
               </select>
             </div>
-            <button class="button" onclick="sortByRating()">
-              Sort by Rating
-            </button>
+            <div class="dropdown" style="display: inline">
+              <select
+                id="sortByRating"
+                class="button"
+                onchange="sortByRating(this.value)"
+              >
+                <option value="">Sort by Rating</option>
+                <option value="AAV">Asc Annual Visitors</option>
+                <option value="DAV">Dsc Annual Visitors</option>
+                <option value="ARR">Asc Rating Review</option>
+                <option value="DRR">Dsc Rating Review</option>
+              </select>
+            </div>
           </div>
         </div>
       </nav>
