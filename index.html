@@ -8,6 +8,7 @@
   </head>
 
   <body>
+    <!-- header -->
     <header class="main-header">
       <nav class="navbar container">
         <input
@@ -59,8 +60,9 @@
         </h2>
       </div>
     </header>
-
+    <!-- container to store all cards -->
     <div id="card-container" class="container"></div>
+    <!-- card itself -->
     <div class="card" style="display: none">
       <img src="" alt="Bagan Temples" class="card-image" />
       <div class="card-content">
@@ -81,8 +83,14 @@
         </div>
 
         <div class="comments"></div>
+        <!-- update and delete button -->
+        <div class="card-actions">
+          <button class="button" onclick="updatePlace(this)">Update</button>
+          <button class="button" onclick="deletePlace(this)">Delete</button>
+        </div>
       </div>
     </div>
+    <!-- footer -->
     <div class="footer">
       <button class="button" onclick="quoteAlert();">Get A Quote!</button>
       <button class="button" onclick="removeLastCard();">Remove A Card!</button>

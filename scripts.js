@@ -182,6 +182,82 @@ function sortByRating(option) {
   showCards();
 }
 
+function deletePlace(button) {
+  // the power of **this** reference to the button is that we can use it to find the card that contains the place name
+  const card = button.closest(".card");
+  const placeName = card.querySelector(".title").textContent;
+
+  // Manipulating unique index to remove its place from the array
+  const index = filteredAttractions.findIndex(
+    (place) => place.name === placeName
+  );
+  if (index > -1) {
+    filteredAttractions.splice(index, 1);
+    showCards();
+  }
+  // can use filter() method too
+  // filteredAttractions = filteredAttractions.filter(
+  //   (place) => place.name !== placeName
+  // ); // since filter return new array. :)
+  // and dun forget to showCards(); again since we are not in react :)
+
+  // Will go wth index since its Space Complexity	is O(1), and it's in-place mutation, so no new array created like filter.
+}
+
+function updatePlace(button) {
+  const card = button.closest(".card");
+  const placeName = card.querySelector(".title").textContent;
+  const place = filteredAttractions.find((p) => p.name === placeName);
+
+  // Populate the modal with existing data
+  const modal = document.getElementById("addPlaceModal");
+  document.getElementById("name").value = place.name;
+  document.getElementById("image").value = place.image;
+  document.getElementById("location").value = place.location;
+  document.getElementById("description").value = place.description;
+  document.getElementById("category").value = place.category;
+  document.getElementById("visitors").value = place.visitors;
+  document.getElementById("rating").value = place.rating;
+  document.getElementById("comments").value = place.comments.join("\n");
+
+  // Update form handler for editing
+  const form = document.getElementById("addPlaceForm");
+  form.onsubmit = function (e) {
+    e.preventDefault();
+
+    // Update the place object
+    const updatedPlace = {
+      name: document.getElementById("name").value,
+      image: document.getElementById("image").value,
+      location: document.getElementById("location").value,
+      description: document.getElementById("description").value,
+      category: document.getElementById("category").value,
+      visitors: parseInt(document.getElementById("visitors").value),
+      rating: parseFloat(document.getElementById("rating").value),
+      // the power of ternary operator is here
+      comments: document.getElementById("comments").value
+        ? document.getElementById("comments").value.split("\n")
+        : [],
+    };
+
+    // Find and update the place in filteredAttractions
+    const index = filteredAttractions.findIndex((p) => p.name === place.name);
+    if (index > -1) {
+      filteredAttractions[index] = updatedPlace;
+    }
+
+    showCards();
+    modal.style.display = "none";
+    form.reset();
+  };
+  // need to bock/display as soon as submit is hit
+  modal.style.display = "block";
+}
+
+// Add to window object
+window.updatePlace = updatePlace;
+window.deletePlace = deletePlace;
+
 // This calls the addCards(), formHandler() function when the page is first loaded
 document.addEventListener("DOMContentLoaded", () => {
   showCards(), formHandler();
