@@ -23,17 +23,9 @@
  *
  */
 
+// submission with more data from data.js, using dict to store data
 import { attractions } from "./data.js";
-let filteredAttractions = [...attractions];
-
-// This is an array of strings (TV show titles)
-let titles = [
-  "Fresh Prince of Bel Air",
-  "Curb Your Enthusiasm",
-  "East Los High",
-];
-// Your final submission should have much more data than this, and
-// you should use more than just an array of strings to store it all.
+let filteredAttractions = [...attractions]; //spreading/copying since we want to preserve the original data
 
 // This function adds cards the page to display the data in the array
 function showCards() {
@@ -64,18 +56,28 @@ function editCardContent(card, place) {
 
   // Update comments
   const commentContainer = card.querySelector(".comments");
-  const comments = commentContainer.querySelectorAll(".comment");
-  comments[0].textContent = `"${place.comments[0]}"`;
-  comments[1].textContent = `"${place.comments[1]}"`;
+  commentContainer.innerHTML =
+    '<p style="margin-bottom: 5px">What tourists say :</p>';
+
+  if (place.comments.length === 0) {
+    const noCommentDiv = document.createElement("div");
+    noCommentDiv.className = "comment";
+    noCommentDiv.textContent = "No comments yet.";
+    commentContainer.appendChild(noCommentDiv);
+  } else {
+    place.comments.forEach((comment) => {
+      const commentDiv = document.createElement("div");
+      commentDiv.className = "comment";
+      commentDiv.textContent = `"${comment}"`;
+      commentContainer.appendChild(commentDiv);
+    });
+  }
 
   // You can use console.log to help you debug!
   // View the output by right clicking on your website,
   // select "Inspect", then click on the "Console" tab
   console.log("new card:", place.name, "- html: ", card);
 }
-
-// This calls the addCards() function when the page is first loaded
-document.addEventListener("DOMContentLoaded", showCards);
 
 function quoteAlert() {
   console.log("Button Clicked!");
@@ -90,6 +92,7 @@ function removeLastCard() {
 }
 
 function searchAttractions() {
+  // toLowerCase is **important** to ensure case-insensitive search
   const query = document.getElementById("search-input").value.toLowerCase();
   filteredAttractions = attractions.filter((place) =>
     place.name.toLowerCase().includes(query)
@@ -98,6 +101,57 @@ function searchAttractions() {
   query.innerHTML = ""; // Clear search input after search button is clicked
 }
 
+function AddNewPlace() {
+  const modal = document.getElementById("addPlaceModal");
+  modal.style.display = "block";
+}
+
+function formHandler() {
+  const modal = document.getElementById("addPlaceModal");
+  const span = document.getElementsByClassName("close")[0];
+  const form = document.getElementById("addPlaceForm");
+
+  span.onclick = function () {
+    // console.log("Close button clicked"); //debugging
+    modal.style.display = "none";
+  };
+
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  };
+
+  form.onsubmit = function (e) {
+    // prevent the data loss when the form is submitted due to default refresh
+    e.preventDefault();
+
+    const newPlace = {
+      name: document.getElementById("name").value,
+      image: document.getElementById("image").value,
+      location: document.getElementById("location").value,
+      description: document.getElementById("description").value,
+      category: document.getElementById("category").value,
+      visitors: parseInt(document.getElementById("visitors").value),
+      rating: parseFloat(document.getElementById("rating").value),
+      comments: document.getElementById("comments").value
+        ? document.getElementById("comments").value.split("\n")
+        : [],
+    };
+
+    filteredAttractions.push(newPlace);
+    showCards();
+    modal.style.display = "none";
+    form.reset();
+  };
+}
+
+// This calls the addCards(), formHandler() function when the page is first loaded
+document.addEventListener("DOMContentLoaded", () => {
+  showCards(), formHandler();
+});
+
 window.quoteAlert = quoteAlert;
 window.removeLastCard = removeLastCard;
 window.searchAttractions = searchAttractions;
+window.AddNewPlace = AddNewPlace;
