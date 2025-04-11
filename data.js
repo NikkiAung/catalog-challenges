@@ -43,7 +43,18 @@ export const attractions = [
     ],
   },
   {
-    name: "Shwedagon Pagoda",
+    name: "Kyaiktiyo",
+    image:
+      "https://remotelands.com/travelogues/app/uploads/2013/03/Golden_1a.jpg",
+    location: "Mon State",
+    description: "A gravity-defying golden boulder, sacred to Buddhists.",
+    category: "Religious",
+    visitors: 250000,
+    rating: 4.7,
+    comments: ["Spiritual and surreal!", "How does the rock not fall?!"],
+  },
+  {
+    name: "Shwedagon",
     image:
       "https://www.tripsavvy.com/thmb/-9hghL7Z4UpHJlaVsjDzcu-FQWc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/shwedagon-pagoda-yangon-5a0e73e44e4f7d0036a76931.jpg",
     location: "Yangon",
@@ -69,17 +80,6 @@ export const attractions = [
       "Clean, peaceful, and not too crowded.",
       "Best beach in Southeast Asia!",
     ],
-  },
-  {
-    name: "Golden Rock (Kyaiktiyo Pagoda)",
-    image:
-      "https://remotelands.com/travelogues/app/uploads/2013/03/Golden_1a.jpg",
-    location: "Mon State",
-    description: "A gravity-defying golden boulder, sacred to Buddhists.",
-    category: "Religious",
-    visitors: 250000,
-    rating: 4.7,
-    comments: ["Spiritual and surreal!", "How does the rock not fall?!"],
   },
   {
     name: "Mawlamyine",
@@ -111,7 +111,8 @@ export const attractions = [
   },
   {
     name: "U Bein Bridge",
-    image: "images/u_bein.jpg",
+    image:
+      "https://www.indochinavoyages.com/wp-content/uploads/2019/12/u_bein_bridge.jpg",
     location: "Amarapura, Mandalay",
     description: "The world's longest teakwood bridge, iconic at sunset.",
     category: "Cultural",
@@ -121,7 +122,8 @@ export const attractions = [
   },
   {
     name: "Mount Popa",
-    image: "images/mount_popa.jpg",
+    image:
+      "https://cdn.kimkim.com/files/a/images/ea87f42557b1d12a1fea9e4698cd9688c7c3eef9/big-779bc55fa24da8e16eef9d7c3e09ad4c.jpg",
     location: "Near Bagan",
     description: "Extinct volcano with a monastery atop the summit.",
     category: "Adventure",

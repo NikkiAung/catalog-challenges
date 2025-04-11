@@ -1,31 +1,60 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>LA TV Shows | Home</title>
-    <meta name="description" content="A Catalog of Shows Set in Los Angeles" />
+    <title>Myanmar tourism places</title>
+    <meta name="description" content="A Catalog of Tourism Places in Myanmar" />
     <link rel="stylesheet" href="style.css" />
-    <script type="text/javascript" src="scripts.js"></script>
+    <script type="module" src="scripts.js"></script>
   </head>
 
   <body>
     <header class="main-header">
-      <h1 class="title">LA TV Shows</h1>
+      <nav class="navbar container">
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Search by location..."
+        />
+        <button class="button" onclick="searchAttractions()">Search</button>
+      </nav>
+      <div class="container title">
+        <h2>
+          Let's take a visit to 10 Most Tourist Visited Places In Myanmar, shall
+          we?
+        </h2>
+      </div>
     </header>
-    <div id="card-container"></div>
+
+    <div id="card-container" class="container"></div>
     <div class="card" style="display: none">
+      <img src="" alt="Bagan Temples" class="card-image" />
       <div class="card-content">
-        <h2>TV Show Title</h2>
-        <img src="" alt="TV Show Poster" />
-        <ul>
-          <li>Bullet Point 1</li>
-          <li>Bullet Point 2</li>
-          <li>Bullet Point 3</li>
-        </ul>
+        <div class="location"></div>
+        <h1 class="title"></h1>
+        <span class="category-tag">Historical</span>
+        <p class="description"></p>
+
+        <div class="stats">
+          <div class="stat">
+            <div class="stat-value"></div>
+            <div class="stat-label">Annual Visitors</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value"></div>
+            <div class="stat-label">Rating</div>
+          </div>
+        </div>
+
+        <div class="comments">
+          <p style="margin-bottom: 5px">What tourists say :</p>
+          <div class="comment"></div>
+          <div class="comment"></div>
+        </div>
       </div>
     </div>
     <div class="footer">
-      <button onclick="quoteAlert();">Get A Quote!</button>
-      <button onclick="removeLastCard();">Remove A Card!</button>
+      <button class="button" onclick="quoteAlert();">Get A Quote!</button>
+      <button class="button" onclick="removeLastCard();">Remove A Card!</button>
     </div>
   </body>
 </html>

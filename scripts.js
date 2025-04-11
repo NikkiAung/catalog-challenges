@@ -23,12 +23,8 @@
  *
  */
 
-const FRESH_PRINCE_URL =
-  "https://upload.wikimedia.org/wikipedia/en/3/33/Fresh_Prince_S1_DVD.jpg";
-const CURB_POSTER_URL =
-  "https://m.media-amazon.com/images/M/MV5BZDY1ZGM4OGItMWMyNS00MDAyLWE2Y2MtZTFhMTU0MGI5ZDFlXkEyXkFqcGdeQXVyMDc5ODIzMw@@._V1_FMjpg_UX1000_.jpg";
-const EAST_LOS_HIGH_POSTER_URL =
-  "https://static.wikia.nocookie.net/hulu/images/6/64/East_Los_High.jpg";
+import { attractions } from "./data.js";
+let filteredAttractions = [...attractions];
 
 // This is an array of strings (TV show titles)
 let titles = [
@@ -45,40 +41,37 @@ function showCards() {
   cardContainer.innerHTML = "";
   const templateCard = document.querySelector(".card");
 
-  for (let i = 0; i < titles.length; i++) {
-    let title = titles[i];
-
-    // This part of the code doesn't scale very well! After you add your
-    // own data, you'll need to do something totally different here.
-    let imageURL = "";
-    if (i == 0) {
-      imageURL = FRESH_PRINCE_URL;
-    } else if (i == 1) {
-      imageURL = CURB_POSTER_URL;
-    } else if (i == 2) {
-      imageURL = EAST_LOS_HIGH_POSTER_URL;
-    }
-
+  for (let place of filteredAttractions) {
     const nextCard = templateCard.cloneNode(true); // Copy the template card
-    editCardContent(nextCard, title, imageURL); // Edit title and image
+    editCardContent(nextCard, place); // Edit title and image
     cardContainer.appendChild(nextCard); // Add new card to the container
   }
 }
 
-function editCardContent(card, newTitle, newImageURL) {
+function editCardContent(card, place) {
   card.style.display = "block";
+  // Update card content with attraction data
+  card.querySelector("img").src = place.image;
+  card.querySelector(".location").textContent = `📍 ${place.location}`;
+  card.querySelector(".title").textContent = place.name;
+  card.querySelector(".category-tag").textContent = place.category;
+  card.querySelector(".description").textContent = place.description;
 
-  const cardHeader = card.querySelector("h2");
-  cardHeader.textContent = newTitle;
+  // Update stats
+  const stats = card.querySelectorAll(".stat-value");
+  stats[0].textContent = `${(place.visitors / 1000).toFixed(0)}k`;
+  stats[1].textContent = place.rating;
 
-  const cardImage = card.querySelector("img");
-  cardImage.src = newImageURL;
-  cardImage.alt = newTitle + " Poster";
+  // Update comments
+  const commentContainer = card.querySelector(".comments");
+  const comments = commentContainer.querySelectorAll(".comment");
+  comments[0].textContent = `"${place.comments[0]}"`;
+  comments[1].textContent = `"${place.comments[1]}"`;
 
   // You can use console.log to help you debug!
   // View the output by right clicking on your website,
   // select "Inspect", then click on the "Console" tab
-  console.log("new card:", newTitle, "- html: ", card);
+  console.log("new card:", place.name, "- html: ", card);
 }
 
 // This calls the addCards() function when the page is first loaded
@@ -92,6 +85,9 @@ function quoteAlert() {
 }
 
 function removeLastCard() {
-  titles.pop(); // Remove last item in titles array
+  filteredAttractions.pop(); // Remove last item in titles array
   showCards(); // Call showCards again to refresh
 }
+
+window.quoteAlert = quoteAlert;
+window.removeLastCard = removeLastCard;
