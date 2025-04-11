@@ -101,14 +101,22 @@ function removeLastCard() {
   showCards(); // Call showCards again to refresh
 }
 
-function searchAttractions() {
+function searchAttractions(searchType) {
   // toLowerCase is **important** to ensure case-insensitive search
+  console.log(searchType);
   const query = document.getElementById("search-input").value.toLowerCase();
-  filteredAttractions = attractions.filter((place) =>
-    place.name.toLowerCase().includes(query)
-  );
+  console.log(query);
+  if (searchType === "location") {
+    filteredAttractions = attractions.filter((place) =>
+      place.name.toLowerCase().includes(query)
+    );
+  } else if (searchType === "state") {
+    filteredAttractions = filteredAttractions.filter((place) =>
+      place.location.toLowerCase().includes(query)
+    );
+  }
   showCards();
-  query.innerHTML = ""; // Clear search input after search button is clicked
+  document.getElementById("search-input").value = ""; // Clear search input after search button is clicked
 }
 
 function AddNewPlace() {

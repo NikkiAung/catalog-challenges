@@ -14,10 +14,13 @@
         <input
           type="text"
           id="search-input"
-          placeholder="Search by location..."
+          placeholder="Search by location/state..."
         />
         <div class="control-bar">
-          <button class="button" onclick="searchAttractions()">Search</button>
+          <div> 
+            <button class="button" onclick="searchAttractions('location')">Search By Location</button>
+            <button class="button" onclick="searchAttractions('state')">Search By State</button>
+          </div>
           <div>
             <button class="button" onclick="AddNewPlace()">
               Let's Add New Place
