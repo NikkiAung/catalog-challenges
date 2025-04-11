@@ -30,7 +30,31 @@ let filteredAttractions = [...attractions]; //spreading/copying since we want to
 // This function adds cards the page to display the data in the array
 function showCards() {
   const cardContainer = document.getElementById("card-container");
+  const titleContainer = document.querySelector(".title-container");
   cardContainer.innerHTML = "";
+
+  // error handling if no data found
+  if (filteredAttractions.length === 0) {
+    // hide the title container since it's not needed when no data found
+    titleContainer.style.display = "none";
+
+    const noDataMessage = document.createElement("div");
+    noDataMessage.style.cssText = `
+      text-align: center;
+      padding: 50px;
+      color: #666;
+      font-family: 'Roboto', sans-serif;
+      font-size: 1.2rem;
+    `;
+    noDataMessage.innerHTML = `
+      <h2 style="margin-bottom: 20px;">No Places Available</h2>
+      <p>All places have been deleted. Click the button below to restore the original data.</p>
+      <button class="button" onclick="restoreData()" style="margin-top: 20px;">Restore Original Data</button>
+    `;
+    cardContainer.appendChild(noDataMessage);
+    return;
+  }
+
   const templateCard = document.querySelector(".card");
 
   for (let place of filteredAttractions) {
@@ -38,6 +62,12 @@ function showCards() {
     editCardContent(nextCard, place); // Edit title and image
     cardContainer.appendChild(nextCard); // Add new card to the container
   }
+}
+
+function restoreData() {
+  filteredAttractions = [...attractions];
+  showCards();
+  alert("Original data has been restored!");
 }
 
 function editCardContent(card, place) {
@@ -103,20 +133,31 @@ function removeLastCard() {
 
 function searchAttractions(searchType) {
   // toLowerCase is **important** to ensure case-insensitive search
-  console.log(searchType);
+  // console.log(searchType); // debugging
   const query = document.getElementById("search-input").value.toLowerCase();
-  console.log(query);
+  // console.log(query); // debugging
+  let searchResults;
   if (searchType === "location") {
-    filteredAttractions = attractions.filter((place) =>
+    searchResults = attractions.filter((place) =>
       place.name.toLowerCase().includes(query)
     );
   } else if (searchType === "state") {
-    filteredAttractions = filteredAttractions.filter((place) =>
+    searchResults = filteredAttractions.filter((place) =>
       place.location.toLowerCase().includes(query)
     );
   }
+
+  // error handling if no results found
+
+  if (searchResults.length === 0) {
+    alert(`No places found for "${query}". Showing all places instead.`);
+    filteredAttractions = [...attractions]; // Reset to show all places
+  } else {
+    filteredAttractions = searchResults;
+  }
+
   showCards();
-  document.getElementById("search-input").value = ""; // Clear search input after search button is clicked
+  document.getElementById("search-input").value = ""; // Clear search input after search button is clicked for UI/UX improvement
 }
 
 function AddNewPlace() {
@@ -205,13 +246,20 @@ function deletePlace(button) {
   const card = button.closest(".card");
   const placeName = card.querySelector(".title").textContent;
 
-  // Manipulating unique index to remove its place from the array
-  const index = filteredAttractions.findIndex(
-    (place) => place.name === placeName
+  // alert the user before deleting the place
+  const confirmDelete = confirm(
+    `Are you sure you want to delete ${placeName}?`
   );
-  if (index > -1) {
-    filteredAttractions.splice(index, 1);
-    showCards();
+
+  // Manipulating unique index to remove its place from the array
+  if (confirmDelete) {
+    const index = filteredAttractions.findIndex(
+      (place) => place.name === placeName
+    );
+    if (index > -1) {
+      filteredAttractions.splice(index, 1);
+      showCards();
+    }
   }
   // can use filter() method too
   // filteredAttractions = filteredAttractions.filter(
@@ -290,3 +338,4 @@ window.sortByRating = sortByRating;
 window.updatePlace = updatePlace;
 window.deletePlace = deletePlace;
 window.clearForm = clearForm;
+window.restoreData = restoreData;
