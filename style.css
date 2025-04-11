@@ -257,3 +257,22 @@ button {
   min-height: 100px;
   resize: vertical;
 }
+
+.dropdown select {
+  padding: 8px 15px;
+  cursor: pointer;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  border: none;
+  border-radius: 10px;
+  font-size: small;
+}
+
+.dropdown select:focus {
+  outline: none;
+}
+
+.dropdown select option {
+  background-color: white;
+  color: black;
+}

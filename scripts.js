@@ -146,6 +146,18 @@ function formHandler() {
   };
 }
 
+function filterByCategory(category) {
+  if (!category) {
+    filteredAttractions = [...attractions];
+  } else {
+    filteredAttractions = attractions.filter(
+      (place) => place.category === category // note to use === instead of == for both type and value checking
+    );
+  }
+  // need to showCards() again since we are not in react :), can use useEffect() in react
+  showCards();
+}
+
 // This calls the addCards(), formHandler() function when the page is first loaded
 document.addEventListener("DOMContentLoaded", () => {
   showCards(), formHandler();
@@ -155,3 +167,4 @@ window.quoteAlert = quoteAlert;
 window.removeLastCard = removeLastCard;
 window.searchAttractions = searchAttractions;
 window.AddNewPlace = AddNewPlace;
+window.filterByCategory = filterByCategory;

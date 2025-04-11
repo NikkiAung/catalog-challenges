@@ -18,10 +18,25 @@
         <div class="control-bar">
           <button class="button" onclick="searchAttractions()">Search</button>
           <div>
-            <button class="button" onclick="AddNewPlace()">Let's Add New Place</button>
-            <button class="button" onclick="filterByCategory('Beach')">
-              Filter
+            <button class="button" onclick="AddNewPlace()">
+              Let's Add New Place
             </button>
+            <!-- Replace the existing filter button with this dropdown -->
+            <div class="dropdown" style="display: inline">
+              <select
+                id="categoryFilter"
+                class="button"
+                onchange="filterByCategory(this.value)"
+              >
+                <option value="">Filter by Category</option>
+                <option value="Historical">Historical</option>
+                <option value="Nature">Nature</option>
+                <option value="Religious">Religious</option>
+                <option value="Beach">Beach</option>
+                <option value="Cultural">Cultural</option>
+                <option value="Adventure">Adventure</option>
+              </select>
+            </div>
             <button class="button" onclick="sortByRating()">
               Sort by Rating
             </button>
@@ -56,8 +71,7 @@
           </div>
         </div>
 
-        <div class="comments">
-        </div>
+        <div class="comments"></div>
       </div>
     </div>
     <div class="footer">
@@ -69,16 +83,37 @@
         <span class="close">&times;</span>
         <h2>Add New Place</h2>
         <form id="addPlaceForm">
-          <input type="text" id="name" placeholder="Place Name" required>
-          <input type="url" id="image" placeholder="Image URL" required>
-          <input type="text" id="location" placeholder="Location" required>
-          <textarea id="description" placeholder="Description" required></textarea>
-          <input type="text" id="category" placeholder="Category" required>
-          <input type="number" id="visitors" placeholder="Annual Visitors" required>
-          <input type="number" id="rating" placeholder="Rating (0-5)" min="0" max="5" step="0.1" required>
-          <textarea id="comments" placeholder="Comments (optional, separate by new line)"></textarea>
+          <input type="text" id="name" placeholder="Place Name" required />
+          <input type="url" id="image" placeholder="Image URL" required />
+          <input type="text" id="location" placeholder="Location" required />
+          <textarea
+            id="description"
+            placeholder="Description"
+            required
+          ></textarea>
+          <input type="text" id="category" placeholder="Category" required />
+          <input
+            type="number"
+            id="visitors"
+            placeholder="Annual Visitors"
+            required
+          />
+          <input
+            type="number"
+            id="rating"
+            placeholder="Rating (0-5)"
+            min="0"
+            max="5"
+            step="0.1"
+            required
+          />
+          <textarea
+            id="comments"
+            placeholder="Comments (optional, separate by new line)"
+          ></textarea>
           <button type="submit" class="button">Submit</button>
         </form>
       </div>
     </div>
+  </body>
 </html>
