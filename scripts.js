@@ -48,6 +48,10 @@ function showCards() {
     `;
     noDataMessage.innerHTML = `
       <h2 style="margin-bottom: 20px;">No Places Available</h2>
+      <img style="width: 200px; height: auto; margin: 0 auto;"
+      src="https://sdk.bitmoji.com/render/panel/49e0bea0-86e7-4e11-9929-72128d76c4a8-dd24bd1d-c2de-480e-9afa-d267efdf5017-v1.png?transparent=1&palette=1"
+      alt="snap-notfound-sticker"
+      />
       <p>All places have been deleted. Click the button below to restore the original data.</p>
       <button class="button" onclick="restoreData()" style="margin-top: 20px;">Restore Original Data</button>
     `;

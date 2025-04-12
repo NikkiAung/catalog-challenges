@@ -11,13 +11,14 @@
     <!-- header -->
     <header class="main-header">
       <nav class="navbar container">
-        <input
-          type="text"
-          id="search-input"
-          placeholder="Search by location/state..."
-        />
-        <div class="control-bar">
-          <div>
+        <!-- Search section -->
+        <div class="nav-section">
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Search by location/state..."
+          />
+          <div class="button-group">
             <button class="button" onclick="searchAttractions('location')">
               Search By Location
             </button>
@@ -25,38 +26,38 @@
               Search By State
             </button>
           </div>
-          <div>
-            <button class="button" onclick="AddNewPlace()">
-              Let's Add New Place
-            </button>
-            <div class="dropdown" style="display: inline">
-              <select
-                id="categoryFilter"
-                class="button"
-                onchange="filterByCategory(this.value)"
-              >
-                <option value="">Filter by Category</option>
-                <option value="Historical">Historical</option>
-                <option value="Nature">Nature</option>
-                <option value="Religious">Religious</option>
-                <option value="Beach">Beach</option>
-                <option value="Cultural">Cultural</option>
-                <option value="Adventure">Adventure</option>
-              </select>
-            </div>
-            <div class="dropdown" style="display: inline">
-              <select
-                id="sortByRating"
-                class="button"
-                onchange="sortByRating(this.value)"
-              >
-                <option value="">Sort by Rating</option>
-                <option value="AAV">Asc Annual Visitors</option>
-                <option value="DAV">Dsc Annual Visitors</option>
-                <option value="ARR">Asc Rating Review</option>
-                <option value="DRR">Dsc Rating Review</option>
-              </select>
-            </div>
+        </div>
+
+        <!-- Control section -->
+        <div class="nav-section">
+          <button class="button" onclick="AddNewPlace()">
+            Let's Add New Place
+          </button>
+          <div class="button-group">
+            <select
+              id="categoryFilter"
+              class="button"
+              onchange="filterByCategory(this.value)"
+            >
+              <option value="">Filter by Category</option>
+              <option value="Historical">Historical</option>
+              <option value="Nature">Nature</option>
+              <option value="Religious">Religious</option>
+              <option value="Beach">Beach</option>
+              <option value="Cultural">Cultural</option>
+              <option value="Adventure">Adventure</option>
+            </select>
+            <select
+              id="sortByRating"
+              class="button"
+              onchange="sortByRating(this.value)"
+            >
+              <option value="">Sort by Rating</option>
+              <option value="AAV">Asc Annual Visitors</option>
+              <option value="DAV">Dsc Annual Visitors</option>
+              <option value="ARR">Asc Rating Review</option>
+              <option value="DRR">Dsc Rating Review</option>
+            </select>
           </div>
         </div>
       </nav>
