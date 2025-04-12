@@ -53,7 +53,10 @@ function errorHandlerShowCards(cardContainer, titleContainer) {
       font-size: 1.2rem;
     `;
     noDataMessage.innerHTML = `
-      <h2 style="margin-bottom: 20px;">No Places Available</h2>
+      <div style="display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 600px; margin: 0 auto;">
+        <h2 style="font-size: clamp(1.5rem, 4vw, 2rem) color:black">Oops! No Places Available...</h2>
+        <img style="width: 100%; max-width: 400px;" src="https://cdn.prod.website-files.com/5ff8fc486c14537c168fc87d/6216e7110d373d4d6ce3f052_filecut_397x23%201%20(Traced)%402x.png" alt="snap-decorative-line"/>
+      </div>
       <img style="width: 200px; height: auto; margin: 0 auto;"
       src="https://sdk.bitmoji.com/render/panel/49e0bea0-86e7-4e11-9929-72128d76c4a8-dd24bd1d-c2de-480e-9afa-d267efdf5017-v1.png?transparent=1&palette=1"
       alt="snap-notfound-sticker"
