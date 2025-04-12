@@ -6,9 +6,12 @@ import {
 } from "../scripts.js";
 
 export function searchAttractions(searchType) {
-  // toLowerCase is **important** to ensure case-insensitive search
+  // toLowerCase & trim are **important** to ensure case-insensitive search & remove leading/trailing spaces
   // console.log(searchType); // debugging
-  let query = document.getElementById("search-input").value.toLowerCase();
+  let query = document
+    .getElementById("search-input")
+    .value.toLowerCase()
+    .trim();
   // console.log(query); // debugging
   let searchResults;
   if (searchType === "location") {
