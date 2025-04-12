@@ -87,18 +87,29 @@ export function deletePlace(button) {
 export function updatePlace(button) {
   const card = button.closest(".card");
   const placeName = card.querySelector(".title").textContent;
-  const place = filteredAttractions.find((p) => p.name === placeName);
+  const {
+    name,
+    image,
+    location,
+    description,
+    category,
+    visitors,
+    rating,
+    comments,
+  } = filteredAttractions.find((p) => p.name === placeName);
 
   // Populate the modal with existing data
   const modal = document.getElementById("addPlaceModal");
-  document.getElementById("name").value = place.name;
-  document.getElementById("image").value = place.image;
-  document.getElementById("location").value = place.location;
-  document.getElementById("description").value = place.description;
-  document.getElementById("category").value = place.category;
-  document.getElementById("visitors").value = place.visitors;
-  document.getElementById("rating").value = place.rating;
-  document.getElementById("comments").value = place.comments.join("\n");
+  modal.querySelector("h2").textContent = "Update Place";
+
+  document.getElementById("name").value = name;
+  document.getElementById("image").value = image;
+  document.getElementById("location").value = location;
+  document.getElementById("description").value = description;
+  document.getElementById("category").value = category;
+  document.getElementById("visitors").value = visitors;
+  document.getElementById("rating").value = rating;
+  document.getElementById("comments").value = comments.join("\n");
 
   // Update form handler for editing
   const form = document.getElementById("addPlaceForm");
@@ -121,15 +132,14 @@ export function updatePlace(button) {
     };
 
     // Find and update the place in filteredAttractions
-    const index = filteredAttractions.findIndex((p) => p.name === place.name);
+    const index = filteredAttractions.findIndex((p) => p.name === name);
     if (index > -1) {
       filteredAttractions[index] = updatedPlace;
     }
-
     showCards();
     modal.style.display = "none";
     form.reset();
   };
-  // need to bock/display as soon as submit is hit
+  // need to bock/display only after hitting btn, then the data is filled/loaded.
   modal.style.display = "block";
 }

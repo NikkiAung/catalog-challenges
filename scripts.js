@@ -25,10 +25,9 @@
 
 // submission with more data from data.js, using dict to store data
 import { attractions } from "./data.js";
-import * as navbar from "./js/navbar.js"; // searchAttractions | filterByCategory | sortByRating
-import * as card from "./js/card.js"; // editCardContent | deletePlace | updatePlace
-import * as modal from "./js/modal.js"; // AddNewPlace | formHandler | clearForm
-import * as footer from "./js/footer.js"; // quizzAlert | removeLastCard
+import { initializeEventListeners } from "./eventHandlers.js";
+import { editCardContent } from "./modules/card.js";
+import { formHandler } from "./modules/modal.js";
 
 export let filteredAttractions = [...attractions]; //spreading/copying since we want to preserve the original data
 
@@ -62,7 +61,7 @@ function errorHandlerShowCards(cardContainer, titleContainer) {
       alt="snap-notfound-sticker"
       />
       <p>All places have been deleted. Click the button below to restore the original data.</p>
-      <button class="button" onclick="restoreData()" style="margin-top: 20px;">Restore Original Data</button>
+      <button class="button" id="restoreDataBtn" style="margin-top: 20px;">Restore Original Data</button>
     `;
     cardContainer.appendChild(noDataMessage);
     return;
@@ -73,14 +72,13 @@ function errorHandlerShowCards(cardContainer, titleContainer) {
 export function showCards() {
   const cardContainer = document.getElementById("card-container");
   const titleContainer = document.querySelector(".title-container");
-  cardContainer.innerHTML = "";
 
   // show error message if main DOM elements are not found
   if (!cardContainer || !titleContainer) {
     console.error("Required DOM elements not found");
     return;
   }
-
+  cardContainer.innerHTML = "";
   errorHandlerShowCards(cardContainer, titleContainer);
 
   const templateCard = document.querySelector(".card");
@@ -92,39 +90,18 @@ export function showCards() {
   }
 }
 
-function restoreData() {
+export function restoreData() {
   updateFilteredAttractions([...attractions]);
   showCards();
   alert("Original data has been restored!");
 }
 
-// **window code**
-// window.searchAttractions = searchAttractions;
-// window.filterByCategory = filterByCategory;
-// window.sortByRating = sortByRating;
-// window.AddNewPlace = AddNewPlace;
-// window.formHandler = formHandler;
-// window.clearForm = clearForm;
-// window.quizzAlert = quizzAlert;
-// window.removeLastCard = removeLastCard;
-// window.deletePlace = deletePlace;
-// window.updatePlace = updatePlace;
-// window.restoreData = restoreData;
-
-// Assign functions to window object, cleaner code, reference to above window code
-Object.assign(window, {
-  ...navbar,
-  ...card,
-  ...modal,
-  ...footer,
-  restoreData,
-});
-
 // This calls the addCards(), formHandler() function when the page is first loaded
 document.addEventListener("DOMContentLoaded", () => {
   try {
+    initializeEventListeners();
     showCards();
-    modal.formHandler();
+    formHandler();
   } catch (error) {
     console.error("Error initializing application:", error);
   }

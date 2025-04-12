@@ -2,6 +2,7 @@ import { filteredAttractions, showCards } from "../scripts.js";
 
 export function AddNewPlace() {
   const modal = document.getElementById("addPlaceModal");
+  modal.querySelector("h2").textContent = "Add New Place";
   modal.style.display = "block";
 }
 
