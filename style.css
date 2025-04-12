@@ -26,6 +26,7 @@
   gap: 2rem;
   margin: 20px;
   margin: 20px auto;
+  justify-items: center;
 }
 
 .card-content {
@@ -53,17 +54,15 @@
 
 .navbar {
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  justify-content: space-between;
+  /* gap: 2rem; */
   padding: 1rem;
   background-color: rgba(126, 208, 231, 0.941);
 }
 
 .nav-section {
   display: flex;
-  flex-direction: column;
   gap: 0.5rem;
-  width: 100%;
 }
 
 .button-group {
@@ -73,7 +72,7 @@
 }
 
 #search-input {
-  width: 100%;
+  /* width: 100%; */
   padding: 0.5rem;
   border-radius: 10px;
   border: 1px solid #ccc;
@@ -81,48 +80,12 @@
 
 .button {
   white-space: nowrap;
-  min-width: fit-content;
-  flex: 1;
+  /* width: fit-content; */
+  /* flex: 1; */
 }
 
 select.button {
   padding-right: 2rem;
-}
-
-/* Responsive breakpoints */
-@media (min-width: 768px) {
-  .navbar {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-  }
-
-  .nav-section {
-    flex-direction: row;
-    align-items: center;
-    width: auto;
-  }
-
-  #search-input {
-    width: auto;
-    min-width: 200px;
-  }
-
-  .button-group {
-    flex-wrap: nowrap;
-  }
-}
-
-/* For very small screens */
-@media (max-width: 480px) {
-  .button {
-    width: 100%;
-  }
-
-  .button-group {
-    flex-direction: column;
-    width: 100%;
-  }
 }
 
 .navbar input[type="text"] {
@@ -135,7 +98,7 @@ select.button {
 }
 
 .container {
-  padding: 15px 120px;
+  padding: 15px max(15px, min(120px, 5vw));
 }
 
 button {
@@ -143,7 +106,7 @@ button {
   color: var(--secondary-color);
   background-color: var(--primary-color);
   border: none;
-  padding: 10px 15px;
+  padding: 10px 10px;
   border-radius: 10px;
   cursor: pointer;
   position: relative;
@@ -215,12 +178,6 @@ button {
   max-width: 1200px;
   margin: 0 auto;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-@media (max-width: 768px) {
-  .main-title {
-    font-size: 2rem;
-  }
 }
 
 .title {
@@ -445,10 +402,65 @@ select.button option:hover {
   background-color: #f8f9fa;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  select.button {
+/* Responsive breakpoints */
+
+@media (max-width: 1024px) {
+  .navbar .nav-section:nth-of-type(1) {
+    flex-direction: column;
+  }
+  #search-input {
     width: 100%;
-    margin: 5px 0;
+  }
+  .navbar .nav-section:nth-of-type(2) {
+    flex-direction: column;
+  }
+  .main-title {
+    font-size: 2.5rem;
+  }
+
+  #card-container {
+    margin-top: -20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+  #card-container {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
+/* For very small screens */
+@media (max-width: 425px) {
+  #card-container {
+    display: grid;
+    grid-template-columns: 1fr; /* Single column for mobile */
+    gap: 100rem;
+    margin: 10px;
+  }
+
+  .card {
+    max-width: 100%; /* Allow cards to take full width */
+    width: 100%;
+  }
+
+  .main-title {
+    font-size: 1.8rem;
+  }
+
+  .navbar {
+    padding: 0.5rem;
+  }
+
+  .button-group {
+    width: 100%;
+  }
+
+  select.button,
+  .button {
+    width: 100%;
+    text-align: center;
   }
 }
