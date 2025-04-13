@@ -106,7 +106,7 @@ export function showCards() {
 }
 
 export function restoreData() {
-  updateFilteredAttractions([...attractions]);
+  updateFilteredAttractions([...attractions], true);
   showCards();
   alert("Original data has been restored!");
 }
