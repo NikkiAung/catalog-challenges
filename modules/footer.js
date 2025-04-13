@@ -18,6 +18,10 @@ export function quizzAlert() {
 }
 
 export function removeLastCard() {
+  if (filteredAttractions.length === 0) {
+    alert("No more places to remove!");
+    return;
+  }
   filteredAttractions.pop(); // Remove last item in titles array
   showCards(); // Call showCards again to refresh
 }

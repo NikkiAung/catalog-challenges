@@ -100,7 +100,7 @@ export function showCards() {
 
   for (let place of filteredAttractions) {
     const nextCard = templateCard.cloneNode(true); // Copy the template card
-    editCardContent(nextCard, place); // Edit title and image
+    editCardContent(nextCard, place); // Edit card with each place values like name, image, location, etc.
     cardContainer.appendChild(nextCard); // Add new card to the container
   }
 }
