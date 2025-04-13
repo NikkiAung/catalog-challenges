@@ -421,6 +421,9 @@ select.button option:hover {
   #card-container {
     margin-top: -20px;
   }
+  .modal-content {
+    top: -12%;
+  }
 }
 
 @media (max-width: 768px) {
@@ -434,11 +437,12 @@ select.button option:hover {
 
 /* For very small screens */
 @media (max-width: 425px) {
+  .modal-content {
+    top: -2%;
+  }
   #card-container {
     display: grid;
     grid-template-columns: 1fr; /* Single column for mobile */
-    gap: 100rem;
-    margin: 10px;
   }
 
   .card {
@@ -451,7 +455,9 @@ select.button option:hover {
   }
 
   .navbar {
-    padding: 0.5rem;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 10px;
   }
 
   .button-group {
