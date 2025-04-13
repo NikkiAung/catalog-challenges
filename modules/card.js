@@ -1,6 +1,10 @@
-import { filteredAttractions, showCards } from "../scripts.js";
+import {
+  filteredAttractions,
+  showCards,
+  updateFilteredAttractions,
+} from "../scripts.js";
 
-// note that updateFilteredAttractions is not used here due to performance reasons, maintaining O(1) space complexity.
+// note that filter method isn't used, maintaining O(1) space complexity.
 
 export function editCardContent(card, place) {
   // desctructuring to make code more readable
@@ -71,9 +75,10 @@ export function deletePlace(button) {
       (place) => place.name === placeName
     );
     if (index > -1) {
-      filteredAttractions.splice(index, 1);
-      showCards();
+      filteredAttractions.splice(index, 1); // need to check here
+      updateFilteredAttractions(filteredAttractions, true);
     }
+    showCards();
   }
   // can use filter() method too
   // filteredAttractions = filteredAttractions.filter(
@@ -135,6 +140,7 @@ export function updatePlace(button) {
     const index = filteredAttractions.findIndex((p) => p.name === name);
     if (index > -1) {
       filteredAttractions[index] = updatedPlace;
+      updateFilteredAttractions(filteredAttractions, true);
     }
     showCards();
     modal.style.display = "none";

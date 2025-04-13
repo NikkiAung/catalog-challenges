@@ -29,11 +29,26 @@ import { initializeEventListeners } from "./eventHandlers.js";
 import { editCardContent } from "./modules/card.js";
 import { formHandler } from "./modules/modal.js";
 
-export let filteredAttractions = [...attractions]; //spreading/copying since we want to preserve the original data
+export let allAttractions = JSON.parse(localStorage.getItem("attractions")) || [
+  ...attractions,
+];
 
-// centre funtion to update the filterAttractions array
-export function updateFilteredAttractions(newAttractions) {
-  filteredAttractions = newAttractions;
+export let filteredAttractions = [...allAttractions]; //spreading/copying since we want to preserve the original data
+
+// centre funtion to update the both arrays
+export function updateFilteredAttractions(
+  newAttractions,
+  isCompleteUpdate = false
+) {
+  if (isCompleteUpdate) {
+    // Update both arrays when adding/removing places
+    allAttractions = newAttractions;
+    filteredAttractions = [...newAttractions];
+    localStorage.setItem("attractions", JSON.stringify(allAttractions));
+  } else {
+    // Update only filtered view for search/filter/sort operations
+    filteredAttractions = newAttractions;
+  }
 }
 
 function errorHandlerShowCards(cardContainer, titleContainer) {

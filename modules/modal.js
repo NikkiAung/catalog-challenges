@@ -1,4 +1,8 @@
-import { filteredAttractions, showCards } from "../scripts.js";
+import {
+  allAttractions,
+  showCards,
+  updateFilteredAttractions,
+} from "../scripts.js";
 
 export function AddNewPlace() {
   const modal = document.getElementById("addPlaceModal");
@@ -40,7 +44,8 @@ export function formHandler() {
         : [],
     };
 
-    filteredAttractions.push(newPlace);
+    allAttractions.push(newPlace);
+    updateFilteredAttractions([...allAttractions], true);
     showCards();
     modal.style.display = "none";
     form.reset();

@@ -3,6 +3,7 @@ import {
   updateFilteredAttractions,
   filteredAttractions,
   showCards,
+  allAttractions,
 } from "../scripts.js";
 
 export function searchAttractions(searchType) {
@@ -15,7 +16,7 @@ export function searchAttractions(searchType) {
   // console.log(query); // debugging
   let searchResults;
   if (searchType === "location") {
-    searchResults = attractions.filter((place) =>
+    searchResults = filteredAttractions.filter((place) =>
       place.name.toLowerCase().includes(query)
     );
   } else if (searchType === "state") {
@@ -28,7 +29,7 @@ export function searchAttractions(searchType) {
 
   if (searchResults.length === 0) {
     alert(`No places found for "${query}". Showing all places instead.`);
-    updateFilteredAttractions([...attractions]); // Reset to show all places
+    updateFilteredAttractions([...filteredAttractions]); // Reset to show all places
   } else {
     updateFilteredAttractions(searchResults);
   }
@@ -39,9 +40,9 @@ export function searchAttractions(searchType) {
 
 export function filterByCategory(category) {
   if (!category) {
-    updateFilteredAttractions([...attractions]);
+    updateFilteredAttractions([...allAttractions]);
   } else {
-    const filtered = attractions.filter(
+    const filtered = allAttractions.filter(
       (place) => place.category === category // note to use === instead of == for both type and value checking
     );
     updateFilteredAttractions(filtered);
