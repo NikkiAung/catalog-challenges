@@ -1,4 +1,8 @@
-import { filteredAttractions, showCards } from "../scripts.js";
+import {
+  filteredAttractions,
+  showCards,
+  updateFilteredAttractions,
+} from "../scripts.js";
 
 export function quizzAlert() {
   const userAnswer = prompt(
@@ -23,5 +27,6 @@ export function removeLastCard() {
     return;
   }
   filteredAttractions.pop(); // Remove last item in titles array
+  updateFilteredAttractions(filteredAttractions, true);
   showCards(); // Call showCards again to refresh
 }

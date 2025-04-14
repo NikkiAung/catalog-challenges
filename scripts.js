@@ -51,7 +51,7 @@ export function updateFilteredAttractions(
   }
 }
 
-function errorHandlerShowCards(cardContainer, titleContainer) {
+function errorHandlerShowCards(cardContainer, titleContainer, category = "") {
   // show the title only if there are cards to display using ternary operator
   titleContainer.style.display =
     filteredAttractions.length === 0 ? "none" : "block";
@@ -68,15 +68,18 @@ function errorHandlerShowCards(cardContainer, titleContainer) {
     `;
     noDataMessage.innerHTML = `
       <div style="display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 600px; margin: 0 auto;">
-        <h2 style="font-size: clamp(1.5rem, 4vw, 2rem) color:black">Oops! No Places Available...</h2>
+        <h2 style="font-size: clamp(1.5rem, 4vw, 2rem) color:black">Oops! No ${category} Places Available...</h2>
         <img style="width: 100%; max-width: 400px;" src="https://cdn.prod.website-files.com/5ff8fc486c14537c168fc87d/6216e7110d373d4d6ce3f052_filecut_397x23%201%20(Traced)%402x.png" alt="snap-decorative-line"/>
       </div>
       <img style="width: 200px; height: auto; margin: 0 auto;"
       src="https://sdk.bitmoji.com/render/panel/49e0bea0-86e7-4e11-9929-72128d76c4a8-dd24bd1d-c2de-480e-9afa-d267efdf5017-v1.png?transparent=1&palette=1"
       alt="snap-notfound-sticker"
       />
-      <p>All places have been deleted. Click the button below to restore the original data.</p>
-      <button class="button" id="restoreDataBtn" style="margin-top: 20px;">Restore Original Data</button>
+      ${
+        !category
+          ? `<p>All places have been deleted. Click the button below to restore the original data.</p>      <button class="button" id="restoreDataBtn" style="margin-top: 20px;">Restore Original Data</button>`
+          : ""
+      }
     `;
     cardContainer.appendChild(noDataMessage);
     return;
@@ -84,7 +87,7 @@ function errorHandlerShowCards(cardContainer, titleContainer) {
 }
 
 // This function adds cards the page to display the data in the array
-export function showCards() {
+export function showCards(category = "") {
   const cardContainer = document.getElementById("card-container");
   const titleContainer = document.querySelector(".title-container");
 
@@ -94,7 +97,7 @@ export function showCards() {
     return;
   }
   cardContainer.innerHTML = "";
-  errorHandlerShowCards(cardContainer, titleContainer);
+  errorHandlerShowCards(cardContainer, titleContainer, category);
 
   const templateCard = document.querySelector(".card");
 
