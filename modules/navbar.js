@@ -48,7 +48,7 @@ export function filterByCategory(category) {
     updateFilteredAttractions(filtered);
   }
   // need to showCards() again since we are not in react :), can use useEffect() in react
-  showCards();
+  showCards(category);
 }
 
 export function sortByRating(option) {
